@@ -13,7 +13,7 @@ const ArchitectBuilds = [];
 
 // !! DON'T REMOVE THIS !!
 // {ARCHITECT:BUILD}
-// ArchitectBuilds.push(require('./Modules/Architect/webpack.build.js'));
+ArchitectBuilds.push(require('./Modules/Architect/webpack.build.js'));
 //
 
 ArchitectBuilds.map(function(build){
@@ -36,6 +36,8 @@ ArchitectBuilds.map(function(build){
     }
 });
 
+new ArchitectWidgets();
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -49,3 +51,29 @@ ArchitectBuilds.map(function(build){
 
 mix.react('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.react('Modules/Architect/Resources/assets/js/app.js', 'modules/architect/js')
+ .sass('Modules/Architect/Resources/assets/sass/architect/app.scss', 'modules/architect/css');
+
+// Compile Architect lib
+mix.scripts([
+ 'Modules/Architect/Resources/assets/js/architect/architect.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.dialog.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.medias.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.contents.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.tags.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.users.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.pageLayouts.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.menu.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.languages.js',
+ 'Modules/Architect/Resources/assets/js/architect/architect.translations.js'
+], 'public/modules/architect/js/architect.js');
+
+
+/*-----------------------------------------------------------
+*     UNCOMMENT TO ENABLE FRONT MODULE
+*------------------------------------------------------------
+mix.js('Modules/Front/Resources/assets/js/app.js', 'modules/front/js')
+   .sass('Modules/Front/Resources/assets/sass/app.scss', 'modules/front/css')
+   .copy('Modules/Front/Resources/assets/img/*', 'public/modules/front/img');
+*/
